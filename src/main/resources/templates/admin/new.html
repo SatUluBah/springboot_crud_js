@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin: 30px 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
+            <label for="login">Username</label>
+            <input type="text" th:field="*{username}" id="login"/>
+            <br/>
+            <br/>
+            <label for="password">Password</label>
+            <input type="text" th:field="*{password}" id="password"/>
+            <br/>
+            <br/>
+            <label for="firstname">Firstname</label>
+            <input type="text" th:field="*{firstname}" id="firstname"/>
+            <br/>
+            <br/>
+            <label for="lastname">Lastname</label>
+            <input type="text" th:field="*{lastname}" id="lastname"/>
+            <br/>
+            <br/>
+            <label for="age">Age</label>
+            <input type="text" th:field="*{age}" id="age"/>
+            <br/>
+            <br/>
+            <label for="email">E-mail</label>
+            <input type="text" th:field="*{email}" id="email"/>
+            <br/>
+            <br/>
+
+
+            <label>Roles:</label>
+
+            <div th:each="role : ${showRoles}">
+                <div>
+                    <input type="checkbox" name="roles"
+
+                               th:text="${role.name}"
+                               th:value="${role.id}"
+                               th:field="*{roles}"
+                    />
+                </div>
+            </div>
+
+            <input type="submit" value="Create new user">
+        </form>
+
+
+        <br/>
+        <a href="/admin/users">Back</a>
+
+        <br/>
+        <br/>
+
+        <form th:method="POST" th:action="@{/logout}">
+            <input class="btn btn-success" type="submit" value="Logout"/>
+        </form>
+    </div>
+</body>
+</html>

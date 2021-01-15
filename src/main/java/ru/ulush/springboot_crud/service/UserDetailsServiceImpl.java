@@ -27,14 +27,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     //  приведен к классу UserDetails.
     // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
 
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        User user = userService.getUserByName(s);
+//
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+//                mapRolesToAuthority(user.getRoles()));
+//    }
+
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userService.getUserByName(s);
-
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("Not found!");
+        }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthority(user.getRoles()));
     }
+
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthority(Set<Role> roles){
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());

@@ -52,4 +52,9 @@ public class UserServiceImp implements ru.ulush.springboot_crud.service.UserServ
     public User getUserByName(String name) {
         return userDao.getUserByName(name);
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
+    }
 }

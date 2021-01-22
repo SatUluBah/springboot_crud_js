@@ -40,14 +40,14 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String firstname, String lastname, int age, String email, Set<Role> roles) {
+    public User(String username, String password, String firstname, String lastname, int age, String email) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.email = email;
-        this.roles = roles;
+        this.roles = new HashSet<Role>();
     }
 
     public Long getId() {

@@ -8,4 +8,6 @@ import java.util.List;
 public interface RoleDao {
     List<Role> listRoles();
     Role getRole(long id);
+    Role getRoleByName(String name);
+
 }

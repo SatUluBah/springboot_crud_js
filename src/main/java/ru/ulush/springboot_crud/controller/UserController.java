@@ -34,23 +34,22 @@ public class UserController {
 
     @GetMapping("/admin")
     public String getUsers(Model model, Principal principal) {
-        Long principalId = userService.getUserByName(principal.getName()).getId();
         User newUser = new User();
         List<Role> showRoles = roleService.listRoles();
         model.addAttribute("newUser", newUser);
         model.addAttribute("showRoles", showRoles);
-        model.addAttribute("userId", userService.getUser(principalId));
+        model.addAttribute("userId", userService.getUserByName(principal.getName()));
         model.addAttribute("users", userService.listUsers());
         return "admin";
     }
 
-    @GetMapping("/admin/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") long id) {
-        model.addAttribute("editUser", userService.getUser(id));
-        model.addAttribute("showRoles", roleService.listRoles());
-        return "redirect:/admin";
-    }
-
+//    @GetMapping("/admin/{id}/edit")
+//    public String editUser(Model model, @PathVariable("id") long id) {
+//        model.addAttribute("editUser", userService.getUser(id));
+//        model.addAttribute("showRoles", roleService.listRoles());
+//        return "redirect:/admin";
+//    }
+//
     @GetMapping("/userspace/{id}")
     public String userspace(Model model, @PathVariable("id") long id, Principal principal) {
         User user = userService.getUserByName(principal.getName());
@@ -61,31 +60,31 @@ public class UserController {
         return "userspace";
     }
 
-    @PostMapping("/admin/new")
-    public String createUser(Model model, @ModelAttribute("user") User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.add(user);
-        model.addAttribute("users", userService.listUsers());
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/admin/{id}")
-    public String updateUser(Model model, @ModelAttribute("user") User user) {
-        if(!user.getPassword().equals(userService.getUser(user.getId()).getPassword())) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-        userService.updateUser(user);
-        model.addAttribute("users", userService.listUsers());
-        return "redirect:/admin";
-    }
-
-    @PostMapping("/admin/{id}/delete")
-    public String deleteUser(Model model, @PathVariable("id") long id) {
-        userService.deleteUser(userService.getUser(id));
-        model.addAttribute("users", userService.listUsers());
-        return "redirect:/admin";
-    }
-
+//    @PostMapping("/admin/new")
+//    public String createUser(Model model, @ModelAttribute("user") User user) {
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        userService.add(user);
+//        model.addAttribute("users", userService.listUsers());
+//        return "redirect:/admin";
+//    }
+//
+//    @PostMapping("/admin/{id}")
+//    public String updateUser(Model model, @ModelAttribute("user") User user) {
+//        if(!user.getPassword().equals(userService.getUser(user.getId()).getPassword())) {
+//            user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        }
+//        userService.updateUser(user);
+//        model.addAttribute("users", userService.listUsers());
+//        return "redirect:/admin";
+//    }
+//
+//    @PostMapping("/admin/{id}/delete")
+//    public String deleteUser(Model model, @PathVariable("id") long id) {
+//        userService.deleteUser(userService.getUser(id));
+//        model.addAttribute("users", userService.listUsers());
+//        return "redirect:/admin";
+//    }
+//
     @GetMapping("/access-denied")
     public String showAccessDenied() {
         return "access-denied";

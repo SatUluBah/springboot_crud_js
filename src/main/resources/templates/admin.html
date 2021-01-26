@@ -91,37 +91,37 @@
                         <form>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_firstname" >First name</label>
-                                <input class="form-control" type="text" field="firstname" id="c_firstname" required autofocus/>
+                                <input class="form-control" type="text" field="firstname" id="c_firstname" required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_lastname" >Last name</label>
-                                <input class="form-control" type="text" field="lastname" id="c_lastname" required autofocus/>
+                                <input class="form-control" type="text" field="lastname" id="c_lastname" required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_age" >Age</label>
-                                <input class="form-control" type="text" field="age" id="c_age" required autofocus/>
+                                <input class="form-control" type="number" field="age" id="c_age" required >
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_email" >Email</label>
-                                <input class="form-control" type="text" field="email" id="c_email" required autofocus/>
+                                <input class="form-control" type="email" field="email" id="c_email" required >
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_password" >Password</label>
-                                <input class="form-control" type="text" field="password" id="c_password" required autofocus/>
+                                <input class="form-control" type="password" field="password" id="c_password" required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="c_username" >Username</label>
-                                <input class="form-control" type="text" field="username" id="c_username"  required autofocus/>
+                                <input class="form-control" type="text" field="username" id="c_username"  required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold mr-2" for="c_roles">Role</label>
                                 <select class="custom-select" size="2" multiple
                                         aria-label="size 2 multiple select example"
-                                        value="" name="roles" id="c_roles">
+                                        value="" name="roles" id="c_roles" required>
                                 </select>
                             </div>
                             <div>
-                                <input id="createBtn" class="btn btn-success" type="submit" value="Add new user">
+                                <input id="createBtn" class="btn btn-success" type="button" value="Add new user">
                             </div>
                         </form>
                     </div>
@@ -135,60 +135,59 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editModalTitle">Edit
-                                    user</h5>
-                                <button type="button" class="close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalTitle">Edit
+                                user</h5>
+                            <button type="button" class="close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         <form id="userEditForm" action="" method="PUT">
                             <div class="modal-body text-center">
                                 <fieldset disabled>
                                     <div class="form-group ">
                                         <label class="font-weight-bold" for="id">ID</label>
-                                        <input type="text" name="id" id="id" value="" class="form-control" required>
+                                        <input type="number" name="id" id="id" value="" class="form-control" required>
                                     </div>
                                 </fieldset>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="firstname">First
                                         name</label>
                                     <input type="text" name="firstname" value="" id="firstname"
-                                           class="form-control" required autofocus/>
+                                           class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="lastname">Last
                                         name</label>
                                     <input type="text" name="lastname" value="" id="lastname"
-                                           class="form-control" required autofocus/>
+                                           class="form-control" required>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="age">Age</label>
-                                    <input type="text" name="age" value="" id="age"
-                                           class="form-control" required autofocus/>
+                                    <input type="number" name="age" value="" id="age"
+                                           class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold"
                                            for="email">Email</label>
-                                    <input type="text" name="email" value="" id="email"
-                                           class="form-control" required autofocus/>
+                                    <input type="email" name="email" value="" id="email"
+                                           class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold"
                                            for="username">Username</label>
                                     <input type="text" name="username" value="" id="username"
-                                           class="form-control" required autofocus/>
+                                           class="form-control" required>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold"
                                            for="password">Password</label>
-                                    <input type="text" name="password" value="" id="password"
-                                           class="form-control" required autofocus/>
+                                    <input type="password" name="password" value="" id="password"
+                                           class="form-control" required >
                                 </div>
                                 <label class="font-weight-bold mr-2"
                                        for="roles">Roles:</label>
@@ -203,6 +202,74 @@
                             </button>
                             <button id="editBtn" type="submit" class="btn btn-primary">
                                 Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!------------------Delete Modal--------------------------------------------->
+            <div class="modal fade" id="userDeleteModal"
+                 tabindex="-1"
+                 role="dialog" aria-labelledby="editModalTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalTitle">Delete
+                                user</h5>
+                            <button type="button" class="close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="userDeleteForm" action="" method="DELETE">
+                            <div class="modal-body text-center">
+                                <fieldset disabled>
+                                    <div class="form-group ">
+                                        <label class="font-weight-bold" for="d_id">ID</label>
+                                        <input type="number" name="id" id="d_id" value="" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold" for="d_firstname">First
+                                            name</label>
+                                        <input type="text" name="firstname" value="" id="d_firstname"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold" for="d_lastname">Last
+                                            name</label>
+                                        <input type="text" name="lastname" value="" id="d_lastname"
+                                               class="form-control" required>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold" for="d_age">Age</label>
+                                        <input type="number" name="age" value="" id="d_age"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="d_email">Email</label>
+                                        <input type="email" name="email" value="" id="d_email"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="d_username">Username</label>
+                                        <input type="text" name="username" value="" id="d_username"
+                                               class="form-control" required>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close
+                            </button>
+                            <button id="deleteBtn" type="submit" class="btn btn-primary">
+                                Delete
                             </button>
                         </div>
                     </div>

@@ -11,10 +11,11 @@ import java.util.Locale;
 @Component
 public class RoleFormatter implements Formatter<Role> {
 
-
     RoleDao roleDao;
+
     @Autowired
     public RoleFormatter(RoleDao roleDao) {
+
         this.roleDao = roleDao;
     }
 

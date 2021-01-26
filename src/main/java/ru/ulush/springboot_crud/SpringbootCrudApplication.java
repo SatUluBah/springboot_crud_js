@@ -17,8 +17,10 @@ public class SpringbootCrudApplication {
     }
 
     static class MyConfig extends WebMvcConfigurerAdapter {
+
         @Autowired
         RoleDao roleDao;
+
         public void addFormatters(FormatterRegistry registry) {
 
             registry.addFormatter(new RoleFormatter(roleDao));

@@ -143,8 +143,8 @@ function showUserTable(result) {
                 "        data-bs-target=\"#userEditModal\" value=\"Edit user\">\n" +
                 "    Edit\n" +
                 "</button></td>"
-            user_data += "<td class=\"align-middle\"><button id=\"buttonUserDelete" + value.id + "\" type=\"button\" class=\"btn btn-danger btn-sm\" \n" +
-                "        value=\"" + value.id + "\">\n" +
+            user_data += "<td class=\"align-middle\"><button id=\"buttonUserDelete" + value.id + "\" type=\"button\" class=\"btn btn-danger btn-sm\" data-bs-toggle=\"modal\"\n" +
+                "        data-bs-target=\"#userDeleteModal\" value=\"Delete user\">\n" +
                 "    Delete\n" +
                 "</button></td>"
         user_data += '</tr>'
@@ -177,15 +177,35 @@ function showUserTable(result) {
 
         $("#buttonUserDelete" + value.id).click(function () {
             $.ajax({
-                url: "/api/users/" + value.id,
-                async: true,
-                type: "DELETE",
-
+                url: '/api/users/' + value.id,
+                method: 'get',
+                dataType: 'json',
+                contentType: "application/json",
                 success: function (result) {
 
-                    showUserTable(result);
+                    $.each(result, function (k, v) {
+                        $("input[name='" + k + "']", '#userDeleteForm').val(v);
+                        console.log(k + " " + v);
+                    });
+
+
+                    $("#deleteBtn").click(function () {
+                        $.ajax({
+                                url: "/api/users/" + value.id,
+                                async: true,
+                                type: "DELETE",
+
+                                success: function (result) {
+
+                                    showUserTable(result);
+                                }
+                            })
+                        $('#userDeleteModal').modal('hide');
+                    });
                 }
+
             })
+
 
         });
 

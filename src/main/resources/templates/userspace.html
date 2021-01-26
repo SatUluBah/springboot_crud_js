@@ -25,17 +25,11 @@
     </div>
 </nav>
 
-
 <div class="container-fluid">
     <div class="row" style="height: 100vh">
         <div class="col-2 bg-light">
             <ul class="nav nav-pills nav-fill mt-4" aria-orientation="vertical">
                 <div class="column col-12">
-                    <li th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}" class="nav-item">
-
-                        <a class="nav-link" aria-current="page" th:href="@{/admin/users/}">Admin</a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link active" href="#">User</a>
                     </li>
@@ -52,31 +46,29 @@
                 <div class="card-body">
                     <table class="table table-striped text-center">
                         <thead>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Email</th>
-                        <th>Role</th>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Role</th>
                         </thead>
                         <tbody>
-                        <td class="align-middle" th:text="${user.id}">ID</td>
-                        <td class="align-middle" th:text="${user.getFirstname()}">firstname</td>
-                        <td class="align-middle" th:text="${user.getLastname()}">lastname</td>
-                        <td class="align-middle" th:text="${user.getAge()}">age</td>
-                        <td class="align-middle" th:text="${user.getEmail()}">email</td>
-                        <td class="align-middle">
-                            <table>
-                                <tr th:each="role: ${user.getRoles()}">
-                                    <div th:text="${role.getName()}">role</div>
-                            </table>
-                        </td>
+                            <td class="align-middle" th:text="${user.id}">ID</td>
+                            <td class="align-middle" th:text="${user.getFirstname()}">firstname</td>
+                            <td class="align-middle" th:text="${user.getLastname()}">lastname</td>
+                            <td class="align-middle" th:text="${user.getAge()}">age</td>
+                            <td class="align-middle" th:text="${user.getEmail()}">email</td>
+                            <td class="align-middle">
+                                <table>
+                                    <tr th:each="role: ${user.getRoles()}">
+                                        <div th:text="${role.getName()}">role</div>
+                                </table>
+                            </td>
                         </tbody>
                     </table>
-                    </br>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
